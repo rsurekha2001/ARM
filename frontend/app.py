@@ -33,7 +33,7 @@ with st.sidebar:
         "k (chunks to retrieve)",
         min_value=1,
         max_value=10,
-        value=8,
+        value=2,
         help="Number of relevant chunks fetched from the vector store."
     )
 
@@ -81,7 +81,7 @@ response_type = st.radio(
 
 query = st.text_input(
     "Your question",
-    placeholder="e.g., What is the cancellation deadline for a flexible rate?"
+    placeholder="e.g., What is the waiting period for hospitalization?"
 )
 
 
@@ -114,8 +114,7 @@ if st.button("Submit", type="primary"):
             with st.spinner("Thinking…"):
                 response = requests.post(
                     f"{BACKEND_URL}{endpoint}",
-                    json=payload,
-                    timeout=120
+                    json=payload
                 )
 
             if response.status_code == 200:
